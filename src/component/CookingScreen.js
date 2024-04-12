@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const ScreenB = () => {
+const CookingScreen = () => {
   return (
     <View>
-      <Text>ScreenB</Text>
+      <Text>CookingScreen</Text>
     </View>
   )
 }
 
-export default ScreenB
+export default CookingScreen
 
 const styles = StyleSheet.create({})
