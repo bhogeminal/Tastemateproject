@@ -27,7 +27,7 @@ const RestaurantScreen = () => {
             </TouchableOpacity>
           </View>
           {/* Pass the array of items to HorizontalScrollView */}
-          <HorizontalScrollView data={item} />
+          <HorizontalScrollView data={restaurantData} />
         </View>
       )})}
     </ScrollView>
