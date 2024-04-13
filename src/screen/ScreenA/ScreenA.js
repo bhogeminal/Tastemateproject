@@ -11,7 +11,7 @@ const Tab = createMaterialTopTabNavigator();
 const ScreenA = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.greeting}>Hello Jordan Joe</Text>
+      <Text style={styles.greeting}>Good Morning Mr.Joe!</Text>
       <View style={styles.searchContainer}>
         {/* <Ionicons name="ios-filter" size={24} color="black" style={styles.filterIcon} /> */}
         <TextInput style={styles.searchInput} placeholder="Search" />
@@ -44,8 +44,11 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 18,
-    fontWeight: 'bold',
+    fontWeight: '700',
+    fontFamily:"Urbanist",
     marginBottom: 10,
+    width:140,
+    color:colors.textcolor
   },
   searchContainer: {
     flexDirection: 'row',

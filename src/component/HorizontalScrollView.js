@@ -1,7 +1,13 @@
 // HorizontalScrollView.js
 import React from 'react';
-import { ScrollView, FlatList, View, Text, Image, TouchableOpacity } from 'react-native';
+import { ScrollView, FlatList, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Imagepath from '../constant/Imagepath';
+
+const { width } = Dimensions.get('window');
+const figmaWidth = 241; // Width specified in Figma
+const numColumns = Math.floor(width / figmaWidth); // Calculate the number of columns based on device width
+const itemWidth = (width - 20) / numColumns - 20; // Calculate the item width dynamically
+
 const HorizontalScrollView = ({ data }) => {
   // Dummy function for handling press on "Save" button
   const handleSave = () => {
@@ -14,33 +20,36 @@ const HorizontalScrollView = ({ data }) => {
   };
 
   return (
-    <ScrollView  showsHorizontalScrollIndicator={false}>
+    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <FlatList
         horizontal
         data={data}
         renderItem={({ item }) => (
-          <View style={{ margin: 10 }}>
-            {/* Restaurant name */}
-            {/* <Text style={{ fontSize: 16, fontWeight: 'bold', marginBottom: 5, position: 'absolute', top: 10, left: 10 }}>{item.name}</Text> */}
-
-            {/* Veg/Non-Veg info */}
-            <Text style={{ position: 'absolute', top: 30, left: 10 }}>{item.isVeg ? 'Veg' : 'Non-Veg'}</Text>
+          <View style={{ width: 160, marginLeft: 8,marginTop:30 }}>
+            {/* Image */}
+            <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 200, borderRadius: 10 }} />
 
             {/* Save button */}
-            <TouchableOpacity onPress={handleSave} style={{ position: 'absolute', top: 10, right: 10 }}>
-              <Text style={{ color: 'blue' }}>Save</Text>
+            <TouchableOpacity onPress={handleSave} style={{ position: 'absolute', top: 10, left: 10 }}>
+              <Image source={Imagepath.save} style={{ width: 25, height: 25 }} />
             </TouchableOpacity>
 
             {/* Heart (Favorite) button */}
-            <TouchableOpacity onPress={handleFavorite} style={{  }}>
-            <Image source={Imagepath.like} style={{width:40,height:40, top: 10, right: 40}}/>
+            <TouchableOpacity onPress={handleFavorite} style={{ position: 'absolute', top: 10, right: 10 }}>
+              <Image source={Imagepath.like} style={{ width: 25, height: 25 }} />
             </TouchableOpacity>
 
-            {/* Image */}
-            <Image source={{ uri: item.imageUrl }} style={{ width: 150, height: 150, borderRadius: 10 }} />
+            {/* Restaurant name */}
+            <Text numberOfLines={1} style={{ position: 'absolute', top: 150, left: 10, fontSize: 16, fontWeight: 'bold', color: 'white', width: '90%' }}>{item.name}</Text>
+
+            {/* Veg/Non-Veg info */}
+            <Text style={{ position: 'absolute', bottom: 10, left: 10, color: 'white' }}>
+              {item.isVeg ? 'Veg' : 'Non-Veg'} | {item.cuisins} | Meat
+            </Text>
           </View>
         )}
         keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{ paddingHorizontal: 10 }}
       />
     </ScrollView>
   );
