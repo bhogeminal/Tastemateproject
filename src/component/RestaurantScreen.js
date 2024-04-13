@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
-import { View, Text,Image } from 'react-native';
-import Swiper from 'react-native-swiper';
-import ItemCard from './Itemcard';
+// RestaurantScreen.js
+import React from 'react';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { restaurantData } from '../Data/data';
-console.log(restaurantData)
-const RestaurantScreen = ({ restaurantData }) => {
+import HorizontalScrollView from './HorizontalScrollView';
+
+const RestaurantScreen = () => {
+  const data = restaurantData; // Your restaurant data
+
+  // Dummy function for handling press on "View All" button
+  const handleViewAll = () => {
+    // Navigate to Screen B or handle the action accordingly
+  };
+
   return (
-    <Swiper>
-     {restaurantData && restaurantData.map((restaurant, index) => (
-        <View key={index}>
-          <Image source={{ uri: restaurant.imageUrl }} style={{ width: '100%', height: 200 }} />
-          <Text>{restaurant.name}</Text>
-          <Text>{restaurant.category}</Text>
+    <ScrollView style={{ flex: 1 }}>
+      {/* Render 5 horizontal scroll views */}
+      {data.map((item, index) => {
+        console.log(item)
+        return(
+        <View key={index} style={{ marginBottom: 20, backgroundColor: 'white' }}>
+          {/* Header with content and "View All" button */}
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', padding: 10, alignItems: 'center' }}>
+            <Text style={{ fontSize: 18 }}>{item.content}</Text>
+            <TouchableOpacity onPress={handleViewAll}>
+              <Text style={{ fontSize: 16, color: 'blue' }}>View All</Text>
+            </TouchableOpacity>
+          </View>
+          {/* Pass the array of items to HorizontalScrollView */}
+          <HorizontalScrollView data={item} />
         </View>
-      ))}
-    </Swiper>
+      )})}
+    </ScrollView>
   );
 };
+
 export default RestaurantScreen;

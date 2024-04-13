@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons'; // Assuming you're using Expo for
 import RestaurantScreen from '../../component/RestaurantScreen';
 import CookingScreen from '../../component/CookingScreen';
 import { restaurantData } from '../../Data/data';
+import colors from '../../Styles/colors';
 const Tab = createMaterialTopTabNavigator();
 
 const ScreenA = ({ navigation }) => {
@@ -25,11 +26,10 @@ const ScreenA = ({ navigation }) => {
       >
         {/* Pass restaurantData as prop to RestaurantScreen */}
         <Tab.Screen name="Restaurants">
-          {() => <RestaurantScreen restaurantData={restaurantData} />}
+          {() => <RestaurantScreen />}
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
-      <Button title="View All" onPress={() => navigation.navigate('ScreenB')} />
     </View>
   );
 };
@@ -38,8 +38,9 @@ const ScreenA = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     paddingTop: 20,
+    backgroundColor:colors.background
   },
   greeting: {
     fontSize: 18,
