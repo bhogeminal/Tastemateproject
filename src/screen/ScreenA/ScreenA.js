@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet,Button } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button,Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Ionicons } from '@expo/vector-icons'; // Assuming you're using Expo for vector icons
 import RestaurantScreen from '../../component/RestaurantScreen';
 import CookingScreen from '../../component/CookingScreen';
-
+import { restaurantData } from '../../Data/data';
 const Tab = createMaterialTopTabNavigator();
 
 const ScreenA = ({ navigation }) => {
@@ -23,7 +23,10 @@ const ScreenA = ({ navigation }) => {
           tabBarStyle: styles.tabBar // Remove the background color of the tab bar
         })}
       >
-        <Tab.Screen name="Restaurants" component={RestaurantScreen} />
+        {/* Pass restaurantData as prop to RestaurantScreen */}
+        <Tab.Screen name="Restaurants">
+          {() => <RestaurantScreen restaurantData={restaurantData} />}
+        </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
       <Button title="View All" onPress={() => navigation.navigate('ScreenB')} />
@@ -31,6 +34,7 @@ const ScreenA = ({ navigation }) => {
   );
 };
 
+// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -46,9 +50,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-  },
-  filterIcon: {
-    marginRight: 10,
   },
   searchInput: {
     flex: 1,
