@@ -1,12 +1,13 @@
-import React,{useState} from 'react';
-import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import RestaurantScreen from '../../component/RestaurantScreen';
 import CookingScreen from '../../component/CookingScreen';
 import { restaurantData } from '../../Data/data';
 import colors from '../../Styles/colors';
 import Imagepath from '../../constant/Imagepath';
-import FilterModal from '../../component/Filtermodel';
+import BottomSheetModal from '../../component/BottomSheetModal'; // Import the BottomSheetModal component
+
 const Tab = createMaterialTopTabNavigator();
 
 const ScreenA = ({ navigation }) => {
@@ -21,15 +22,15 @@ const ScreenA = ({ navigation }) => {
   const handleCloseModal = () => {
     setIsModalVisible(false); // Hide the modal when the close button is clicked
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.greeting}>Good Morning Mr.Joe!</Text>
       <View style={styles.searchContainer}>
         <Image source={Imagepath.searchnormal} />
         <TextInput style={styles.searchInput} placeholder="Search" />
-        <TouchableOpacity style={styles.filterIconContainer}>
-        <Image source={Imagepath.Vector} style={{height:20,width:20}}/>
-
+        <TouchableOpacity style={styles.filterIconContainer} onPress={() => handleFilter('veg')}>
+          <Image source={Imagepath.Vector} style={{ height: 20, width: 20 }} />
         </TouchableOpacity>
       </View>
       <Tab.Navigator
@@ -46,8 +47,13 @@ const ScreenA = ({ navigation }) => {
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
-      <FilterModal isVisible={isModalVisible} onClose={handleCloseModal} />
-
+      <BottomSheetModal isVisible={isModalVisible} onClose={handleCloseModal}>
+        {/* Add your filter options or content here */}
+        <Text>Filter Options</Text>
+        <TouchableOpacity onPress={handleCloseModal}>
+          <Text>Close</Text>
+        </TouchableOpacity>
+      </BottomSheetModal>
     </View>
   );
 };
@@ -76,24 +82,17 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: colors.gray,
     paddingHorizontal: 10,
-    backgroundColor:colors.white
-
+    backgroundColor: colors.white
   },
   searchInput: {
     flex: 1,
     paddingVertical: 8,
     paddingHorizontal: 10,
   },
-  searchIcon: {
-    marginRight: 10,
-  },
   filterIconContainer: {
     padding: 8,
     borderRadius: 5,
     backgroundColor: 'lightgray',
-  },
-  filterIcon: {
-    marginRight: 5,
   },
   tabLabel: {
     fontSize: 16,
