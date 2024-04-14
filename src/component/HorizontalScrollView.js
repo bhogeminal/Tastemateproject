@@ -3,10 +3,6 @@ import React from 'react';
 import { ScrollView, FlatList, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Imagepath from '../constant/Imagepath';
 
-const { width } = Dimensions.get('window');
-const figmaWidth = 241; // Width specified in Figma
-const numColumns = Math.floor(width / figmaWidth); // Calculate the number of columns based on device width
-const itemWidth = (width - 20) / numColumns - 20; // Calculate the item width dynamically
 
 const HorizontalScrollView = ({ data }) => {
   // Dummy function for handling press on "Save" button
@@ -20,12 +16,12 @@ const HorizontalScrollView = ({ data }) => {
   };
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+    <ScrollView showsHorizontalScrollIndicator={false}>
       <FlatList
         horizontal
         data={data}
         renderItem={({ item }) => (
-          <View style={{ width: 160, marginLeft: 8,marginTop:30 }}>
+          <View style={{ width: 160, marginLeft: 8, marginTop: 30 }}>
             {/* Image */}
             <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 200, borderRadius: 10 }} />
 
