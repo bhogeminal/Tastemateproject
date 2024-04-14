@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, Text, TextInput, StyleSheet, Button, Image, TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import RestaurantScreen from '../../component/RestaurantScreen';
@@ -6,10 +6,21 @@ import CookingScreen from '../../component/CookingScreen';
 import { restaurantData } from '../../Data/data';
 import colors from '../../Styles/colors';
 import Imagepath from '../../constant/Imagepath';
-
+import FilterModal from '../../component/Filtermodel';
 const Tab = createMaterialTopTabNavigator();
 
 const ScreenA = ({ navigation }) => {
+  const [filter, setFilter] = useState(null); // State to manage the filter
+  const [isModalVisible, setIsModalVisible] = useState(false); // State to manage the visibility of the modal
+
+  const handleFilter = (filterType) => {
+    setFilter(filterType); // Update the filter state when the filter icon is clicked
+    setIsModalVisible(true); // Show the modal when the filter icon is clicked
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false); // Hide the modal when the close button is clicked
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.greeting}>Good Morning Mr.Joe!</Text>
@@ -31,10 +42,12 @@ const ScreenA = ({ navigation }) => {
       >
         {/* Pass restaurantData as prop to RestaurantScreen */}
         <Tab.Screen name="Restaurants">
-          {() => <RestaurantScreen />}
+          {() => <RestaurantScreen filter={filter} />}
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
+      <FilterModal isVisible={isModalVisible} onClose={handleCloseModal} />
+
     </View>
   );
 };
@@ -59,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 10,
     borderColor: colors.gray,
     paddingHorizontal: 10,
