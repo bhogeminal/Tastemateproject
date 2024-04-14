@@ -41,9 +41,14 @@ const BottomSheetModal = ({ isVisible, onClose }) => {
           </TouchableOpacity>
           {/* Add more protein options as needed */}
         </View>
-        <TouchableOpacity style={styles.closeButton} onPress={onClose}>
-          <Text style={styles.closeButtonText}>Close</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.applyButton]}>
+            <Text style={[styles.buttonText, { color: colors.white }]}>Apply Filter</Text>
+          </TouchableOpacity>
+          </View>
       </View>
     </View>
   );
@@ -88,6 +93,20 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: colors.primary,
     fontWeight: 'bold',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  applyButton: {
+    backgroundColor: colors.textcolor, // Change to the desired color
+    borderRadius:10
+  },
+  button: {
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
   },
 });
 
