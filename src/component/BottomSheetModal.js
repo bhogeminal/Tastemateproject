@@ -7,39 +7,48 @@ const BottomSheetModal = ({ isVisible, onClose }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.overlay} onPress={onClose} />
+      <View style={{height:5,backgroundColor:"#F0F0F0"}}/>
+
       <View style={styles.modal}>
-        <Text style={styles.title}>Filter Options</Text>
+        <Text style={styles.title}>Filters</Text>
         <View style={styles.category}>
-          <Text style={styles.categoryTitle}>Diet:</Text>
+          <Text style={[styles.categoryTitle,styles.Dietcategory]}>Diet:</Text>
+          <View style={{flexDirection:"row",marginTop:10,}}>
           <TouchableOpacity style={styles.option} onPress={() => console.log('Veg')}>
-            <Text>Veg</Text>
+            <Text style={{color:colors.textcolor}}>Vegetarian</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.option} onPress={() => console.log('Non-Veg')}>
-            <Text>Non-Veg</Text>
+            <Text>Non-Vegetarian</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.option} onPress={() => console.log('Vegan')}>
             <Text>Vegan</Text>
+            
           </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.category}>
           <Text style={styles.categoryTitle}>Cuisines:</Text>
+          <View style={{flexDirection:"row",marginTop:10}}>
+
           <TouchableOpacity style={styles.option} onPress={() => console.log('Indian')}>
             <Text>Indian</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.option} onPress={() => console.log('Mediterranean')}>
             <Text>Mediterranean</Text>
           </TouchableOpacity>
-          {/* Add more cuisine options as needed */}
+          </View>
         </View>
-        <View style={styles.category}>
+        <View style={[styles.category,styles.proteincategory]}>
           <Text style={styles.categoryTitle}>Proteins:</Text>
+          <View style={{flexDirection:"row",marginTop:10,}}>
+
           <TouchableOpacity style={styles.option} onPress={() => console.log('Chicken')}>
             <Text>Chicken</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.option} onPress={() => console.log('Beef')}>
             <Text>Beef</Text>
           </TouchableOpacity>
-          {/* Add more protein options as needed */}
+</View>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
@@ -67,24 +76,37 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    padding: 20,
+    padding: 20, 
+
   },
   title: {
-    fontSize: 18,
+    fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 10,
+    color:colors.black
   },
   category: {
     marginBottom: 20,
+    // flexDirection:"row",
+    // backgroundColor:"red"
   },
+  proteincategory:{
+marginTop:70,
+marginBottom:90,
+  },
+  Dietcategory:{
+    marginTop:70
+      },
   categoryTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 5,
+    // marginBottom: 5,
+    // marginTop:60
   },
   option: {
     paddingVertical: 8,
-    paddingHorizontal: 16,
+borderColor:colors.textcolor,
+borderWidth:1,borderRadius:22,paddingHorizontal:10,marginHorizontal:2
   },
   closeButton: {
     alignSelf: 'flex-end',
