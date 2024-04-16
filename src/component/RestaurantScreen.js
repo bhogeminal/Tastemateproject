@@ -5,7 +5,9 @@ import { restaurantData } from '../Data/data';
 import HorizontalScrollView from './HorizontalScrollView';
 import colors from '../Styles/colors';
 
-const RestaurantScreen = () => {
+const RestaurantScreen = ({filter,restaurantData}) => {
+  const filteredData = filter ? restaurantData.filter(item => item.isVeg === filter) : restaurantData;
+
   const data = restaurantData; // Your restaurant data
 
   // Dummy function for handling press on "View All" button
@@ -31,7 +33,7 @@ const RestaurantScreen = () => {
           color:colors.smalltextcolr,lineHeight:14,}}>{item.custominfo}</Text>
 
           {/* Pass the array of items to HorizontalScrollView */}
-          <HorizontalScrollView data={restaurantData} />
+          <HorizontalScrollView data={filteredData} />
         </View>
       )})}
     </ScrollView>

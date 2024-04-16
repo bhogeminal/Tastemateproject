@@ -11,7 +11,7 @@ import BottomSheetModal from '../../component/BottomSheetModal'; // Import the B
 const Tab = createMaterialTopTabNavigator();
 
 const ScreenA = ({ navigation }) => {
-  const [filter, setFilter] = useState(null); // State to manage the filter
+  const [selectedFilter, setSelectedFilter] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false); // State to manage the visibility of the modal
 
   const handleFilter = (filterType) => {
@@ -43,7 +43,7 @@ const ScreenA = ({ navigation }) => {
       >
         {/* Pass restaurantData as prop to RestaurantScreen */}
         <Tab.Screen name="Restaurants">
-          {() => <RestaurantScreen filter={filter} />}
+        {() => <RestaurantScreen filter={selectedFilter} restaurantData={restaurantData} />}
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
