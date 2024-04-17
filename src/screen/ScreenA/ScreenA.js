@@ -15,7 +15,7 @@ const ScreenA = ({ navigation }) => {
   const [isModalVisible, setIsModalVisible] = useState(false); // State to manage the visibility of the modal
 
   const handleFilter = (filterType) => {
-    setFilter(filterType); // Update the filter state when the filter icon is clicked
+    setSelectedFilter(filterType); // Update the filter state when the filter icon is clicked
     setIsModalVisible(true); // Show the modal when the filter icon is clicked
   };
 
