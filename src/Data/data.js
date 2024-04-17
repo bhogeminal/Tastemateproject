@@ -8,6 +8,7 @@ export const restaurantData = [
       "revenu": 82.4,
       "cuisins":"French",
       "noOfStores": 30,
+      "category":"veg",
       "imageUrl": "https://img.freepik.com/free-photo/beautiful-luxury-outdoor-swimming-pool-hotel-resort_74190-7433.jpg"
     },
     {
@@ -19,6 +20,7 @@ export const restaurantData = [
       "revenu": 33.4,
       "cuisins":"Indian",
       "noOfStores": 6,
+      "category":"Nonveg",
       "imageUrl": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/22/a1/9c/80/essentia-luxury-hotel.jpg?w=700&h=-1&s=1"
     },
     {
@@ -30,6 +32,7 @@ export const restaurantData = [
       "revenu": 50.4,
       "cuisins":"chinese",
       "noOfStores": 25,
+      "category":"veg",
       "imageUrl": "https://b.zmtcdn.com/data/pictures/7/19111997/e2053b3a60e56e2bf1129bd54005f4dd_featured_v2.jpg"
     },
     {
@@ -41,6 +44,7 @@ export const restaurantData = [
       "revenu": 49.9,
       "cuisins":"Italian",
       "noOfStores": 40,
+      "category":"veg",
       "imageUrl": "https://b.zmtcdn.com/data/pictures/4/900844/38f49e4218803f0d328a22d0f3bf3452.jpg"
     },
     {
@@ -50,7 +54,7 @@ export const restaurantData = [
       "content": "satisfy your cravings",
       "custominfo":"Restaurants that uits your plate",      "revenu": 22.8,
       "noOfStores": 20,
-      "cuisins":"chinese",
+      "category":"Nonveg",
       "imageUrl": "https://content.jdmagicbox.com/comp/kozhikode/e4/0495px495.x495.141107131009.s9e4/catalogue/dhe-puttu-puthiyara-kozhikode-restaurants-1722877.jpg"
     },
     {
@@ -62,6 +66,7 @@ export const restaurantData = [
       "revenu": 15,
       "cuisins":"Italian",
       "noOfStores": 10,
+      "category":"veg",
       "imageUrl": "https://www.ahstatic.com/photos/c096_ho_00_p_1024x768.jpg"
     }
   ]

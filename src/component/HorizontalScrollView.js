@@ -40,7 +40,7 @@ const HorizontalScrollView = ({ data }) => {
 
             {/* Veg/Non-Veg info */}
             <Text style={{ position: 'absolute', bottom: 10, left: 10, color: 'white' }}>
-              {item.isVeg ? 'Veg' : 'Non-Veg'} | {item.cuisins} | Meat
+              {item.category} | {item.cuisins} | Meat
             </Text>
           </View>
         )}

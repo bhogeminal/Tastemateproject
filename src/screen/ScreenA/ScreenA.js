@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import RestaurantScreen from '../../component/RestaurantScreen';
@@ -10,19 +10,38 @@ import BottomSheetModal from '../../component/BottomSheetModal'; // Import the B
 
 const Tab = createMaterialTopTabNavigator();
 
-const ScreenA = ({ navigation }) => {
+const ScreenA = ({navigation}) => {
   const [selectedFilter, setSelectedFilter] = useState(null);
-  const [isModalVisible, setIsModalVisible] = useState(false); // State to manage the visibility of the modal
-
+  const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [filteredData, setFilteredData] = useState(restaurantData);
   const handleFilter = (filterType) => {
-    setSelectedFilter(filterType); // Update the filter state when the filter icon is clicked
-    setIsModalVisible(true); // Show the modal when the filter icon is clicked
+    setSelectedFilter(filterType);
+    setIsModalVisible(true);
   };
-
+  // State to manage the visibility of the modal
   const handleCloseModal = () => {
     setIsModalVisible(false); // Hide the modal when the close button is clicked
   };
-
+  const handleApplyFilter = (filter) => {
+    setSelectedFilter(filter);
+    // Apply filter to restaurant data
+    const filtered = restaurantData.filter(item => {
+      // Check if the item matches the selected filter
+      if (filter === 'veg') {
+        // Filter only vegetarian items
+        return item.isVeg === true;
+      } else if (filter === 'non-veg') {
+        // Filter only non-vegetarian items
+        return item.isVeg === false;
+      } else {
+        // If no filter selected, return all items
+        return true;
+      }
+    });
+    setFilteredData(filtered);
+    // Navigate to Screen A
+    navigation.navigate('ScreenA', { filteredData: filtered });
+  };
   return (
     <View style={styles.container}>
       <Text style={styles.greeting}>Good Morning Mr.Joe!</Text>
@@ -47,13 +66,10 @@ const ScreenA = ({ navigation }) => {
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
-      <BottomSheetModal isVisible={isModalVisible} onClose={handleCloseModal}>
+      <BottomSheetModal isVisible={isModalVisible} onClose={handleCloseModal} 
+      onApplyFilter={handleApplyFilter} />
         {/* Add your filter options or content here */}
-        <Text>Filter Options</Text>
-        <TouchableOpacity onPress={handleCloseModal}>
-          <Text>Close</Text>
-        </TouchableOpacity>
-      </BottomSheetModal>
+       
     </View>
   );
 };
