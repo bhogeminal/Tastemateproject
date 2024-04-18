@@ -6,11 +6,10 @@ import HorizontalScrollView from './HorizontalScrollView';
 import colors from '../Styles/colors';
 
 const RestaurantScreen = ({filter,restaurantData}) => {
-  const filteredData = filter ? restaurantData.filter(item => item.isVeg === filter) : restaurantData;
+  const filteredData = filter ? restaurantData.filter(item => item.category === filter) : restaurantData;
 
-  const data = restaurantData; // Your restaurant data
+  const data = restaurantData; 
 
-  // Dummy function for handling press on "View All" button
   const handleViewAll = () => {
     // Navigate to Screen B or handle the action accordingly
   };
