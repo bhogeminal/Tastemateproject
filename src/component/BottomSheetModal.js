@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import colors from '../Styles/colors';
 
@@ -22,57 +22,45 @@ const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
 
         <View style={{ padding:10}}>
 
-
-        <View style={styles.category}>
-          <Text style={[styles.categoryTitle, styles.Dietcategory]}>Diet</Text>
-          <View style={{ flexDirection: "row", marginTop: 10 }}>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Veg')}>
-              <Text style={{ color: colors.textcolor }}>Vegetarian</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Non-Veg')}>
-              <Text>Non-Vegetarian</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Vegan')}>
-              <Text>Vegan</Text>
-            </TouchableOpacity>
+          <View style={styles.category}>
+            <Text style={[styles.categoryTitle, styles.Dietcategory]}>Diet</Text>
+            <View style={{ flexDirection: "row", marginTop: 10 }}>
+              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('veg')}>
+                <Text style={{ color: colors.textcolor }}>Vegetarian</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('non-veg')}>
+                <Text>Non-Vegetarian</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('vegan')}>
+                <Text>Vegan</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
 
-        <View style={styles.category}>
-          <Text style={styles.categoryTitle}>Cuisines</Text>
-          <View style={{ flexDirection: "row", marginTop: 10 }}>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Indian')}>
-              <Text>Indian</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Mediterranean')}>
-              <Text>Mediterranean</Text>
-            </TouchableOpacity>
+          <View style={styles.category}>
+            <Text style={styles.categoryTitle}>Cuisines</Text>
+            <View style={{ flexDirection: "row", marginTop: 10 }}>
+              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('indian')}>
+                <Text>Indian</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('mediterranean')}>
+                <Text>Mediterranean</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
 
-        <View style={[styles.category, styles.proteincategory]}>
-          <Text style={styles.categoryTitle}>Proteins</Text>
-          <View style={{ flexDirection: "row", marginTop: 10, }}>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Chicken')}>
-              <Text>Chicken</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.option} onPress={() => console.log('Beef')}>
-              <Text>Beef</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
         </View>
 
         <View style={styles.line} />
 
         <View style={styles.buttonContainer}>
-      <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
-        <Text style={styles.buttonText}>Cancel</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={[styles.button, styles.applyButton]} onPress={handleApplyFilter}>
-        <Text style={[styles.buttonText, { color: colors.white }]}>Apply Filters</Text>
-      </TouchableOpacity>
-    </View>
+          <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
+            <Text style={styles.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={[styles.button, styles.applyButton]} onPress={handleApplyFilter}>
+            <Text style={[styles.buttonText, { color: colors.white }]}>Apply Filters</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -101,10 +89,6 @@ const styles = StyleSheet.create({
   },
   category: {
     marginBottom: 15,
-  },
-  proteincategory: {
-    marginTop: 70,
-    marginBottom: 140,
   },
   Dietcategory: {
     marginTop: 50,

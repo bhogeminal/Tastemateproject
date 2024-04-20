@@ -23,23 +23,14 @@ const ScreenA = ({navigation}) => {
     setIsModalVisible(false); // Hide the modal when the close button is clicked
   };
   const handleApplyFilter = (filter) => {
-    setSelectedFilter(filter);
-    // Apply filter to restaurant data
+    console.log("Selected Filter:", filter);
+  
     const filtered = restaurantData.filter(item => {
-      // Check if the item matches the selected filter
-      if (filter === 'veg') {
-        // Filter only vegetarian items
-        return item.isVeg === true;
-      } else if (filter === 'non-veg') {
-        // Filter only non-vegetarian items
-        return item.isVeg === false;
-      } else {
-        // If no filter selected, return all items
-        return true;
-      }
+      return item.category.toLowerCase() === filter.toLowerCase();
     });
+  
+    console.log("Filtered Data:", filtered);
     setFilteredData(filtered);
-    // Navigate to Screen A
     navigation.navigate('ScreenA', { filteredData: filtered });
   };
   return (
@@ -62,7 +53,7 @@ const ScreenA = ({navigation}) => {
       >
         {/* Pass restaurantData as prop to RestaurantScreen */}
         <Tab.Screen name="Restaurants">
-        {() => <RestaurantScreen filter={selectedFilter} restaurantData={restaurantData} />}
+        {() => <RestaurantScreen filter={selectedFilter}  />}
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
