@@ -4,9 +4,14 @@ import colors from '../Styles/colors';
 
 const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
   if (!isVisible) return null;
+  
   const [selectedFilter, setSelectedFilter] = useState(null);
 
-  const handleApplyFilter = () => {
+  const handleApplyFilter = (filter) => {
+    setSelectedFilter(filter);
+  };
+
+  const handleApplyAndClose = () => {
     onApplyFilter(selectedFilter);
     onClose();
   };
@@ -20,18 +25,18 @@ const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
         <Text style={styles.title}>Filters</Text>
         <View style={styles.line} />
 
-        <View style={{ padding:10}}>
+        <View style={{ padding: 10 }}>
 
           <View style={styles.category}>
             <Text style={[styles.categoryTitle, styles.Dietcategory]}>Diet</Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
-              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('veg')}>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('veg')}>
                 <Text style={{ color: colors.textcolor }}>Vegetarian</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('non-veg')}>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('Nonveg')}>
                 <Text>Non-Vegetarian</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('vegan')}>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('vegan')}>
                 <Text>Vegan</Text>
               </TouchableOpacity>
             </View>
@@ -40,15 +45,26 @@ const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
           <View style={styles.category}>
             <Text style={styles.categoryTitle}>Cuisines</Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
-              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('indian')}>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('indian')}>
                 <Text>Indian</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option} onPress={() => setSelectedFilter('mediterranean')}>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('mediterranean')}>
                 <Text>Mediterranean</Text>
               </TouchableOpacity>
             </View>
           </View>
 
+          <View style={[styles.category, styles.proteincategory]}>
+            <Text style={styles.categoryTitle}>Proteins</Text>
+            <View style={{ flexDirection: "row", marginTop: 10, }}>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('chicken')}>
+                <Text>Chicken</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('beef')}>
+                <Text>Beef</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
 
         <View style={styles.line} />
@@ -57,7 +73,7 @@ const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
           <TouchableOpacity style={[styles.button, styles.cancelButton]} onPress={onClose}>
             <Text style={styles.buttonText}>Cancel</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.applyButton]} onPress={handleApplyFilter}>
+          <TouchableOpacity style={[styles.button, styles.applyButton]} onPress={handleApplyAndClose}>
             <Text style={[styles.buttonText, { color: colors.white }]}>Apply Filters</Text>
           </TouchableOpacity>
         </View>
@@ -85,10 +101,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: colors.black,
-    padding:20
+    padding: 20
   },
   category: {
     marginBottom: 15,
+  },
+  proteincategory: {
+    marginTop: 70,
+    marginBottom: 140,
   },
   Dietcategory: {
     marginTop: 50,
@@ -96,7 +116,7 @@ const styles = StyleSheet.create({
   categoryTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color:colors.black
+    color: colors.black
   },
   option: {
     paddingVertical: 8,
@@ -114,7 +134,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginTop: 15,
-    marginBottom:20
+    marginBottom: 20
 
   },
   applyButton: {
@@ -128,9 +148,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: colors.black,
-    fontFamily:"Urbanist",
-    fontSize:18,
-    fontWeight:"600"
+    fontFamily: "Urbanist",
+    fontSize: 18,
+    fontWeight: "600"
   },
 });
 

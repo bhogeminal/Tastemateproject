@@ -26,14 +26,14 @@ export const restaurantData = [
     {
       "id": 3,
       "rank": 3,
-      "name": "CoffiHouse",
-      "content": "Culinary Delights Awards",
-      "custominfo":"Restaurants you haven't tried yet",      
-      "revenu": 50.4,
-      "cuisins":"chinese",
-      "noOfStores": 25,
-      "category":"veg",
-      "imageUrl": "https://b.zmtcdn.com/data/pictures/7/19111997/e2053b3a60e56e2bf1129bd54005f4dd_featured_v2.jpg"
+      "name": "Bruffiya",
+      "content": "satisfy your cravings",
+      "custominfo":"Restaurants that uits your plate",      
+      "revenu": 15,
+      "cuisins":"Italian",
+      "noOfStores": 10,
+      "category":"vegan",
+      "imageUrl": "https://www.ahstatic.com/photos/c096_ho_00_p_1024x768.jpg"
     },
     {
       "id": 4,
@@ -52,7 +52,8 @@ export const restaurantData = [
       "rank": 5,
       "name": "DhePuttu",
       "content": "satisfy your cravings",
-      "custominfo":"Restaurants that uits your plate",      "revenu": 22.8,
+      "custominfo":"Restaurants that uits your plate",      
+      "revenu": 22.8,
       "noOfStores": 20,
       "category":"Nonveg",
       "imageUrl": "https://content.jdmagicbox.com/comp/kozhikode/e4/0495px495.x495.141107131009.s9e4/catalogue/dhe-puttu-puthiyara-kozhikode-restaurants-1722877.jpg"
@@ -66,7 +67,7 @@ export const restaurantData = [
       "revenu": 15,
       "cuisins":"Italian",
       "noOfStores": 10,
-      "category":"veg",
+      "category":"vegan",
       "imageUrl": "https://www.ahstatic.com/photos/c096_ho_00_p_1024x768.jpg"
     }
   ]

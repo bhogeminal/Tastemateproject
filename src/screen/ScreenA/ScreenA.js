@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import RestaurantScreen from '../../component/RestaurantScreen';
@@ -10,26 +10,32 @@ import BottomSheetModal from '../../component/BottomSheetModal'; // Import the B
 
 const Tab = createMaterialTopTabNavigator();
 
-const ScreenA = ({navigation}) => {
+const ScreenA = ({ navigation }) => {
   const [selectedFilter, setSelectedFilter] = useState(null);
-  const [isModalVisible, setIsModalVisible] = useState(false); 
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [filteredData, setFilteredData] = useState(restaurantData);
+
   const handleFilter = (filterType) => {
     setSelectedFilter(filterType);
     setIsModalVisible(true);
   };
-  // State to manage the visibility of the modal
+
   const handleCloseModal = () => {
-    setIsModalVisible(false); // Hide the modal when the close button is clicked
+    setIsModalVisible(false);
   };
+
   const handleApplyFilter = (filter) => {
-    console.log("Selected Filter:", filter);
-  
+    setSelectedFilter(filter);
     const filtered = restaurantData.filter(item => {
-      return item.category.toLowerCase() === filter.toLowerCase();
+      if (filter === 'veg') {
+        return item.category.toLowerCase() === 'veg';
+      } else if (filter === 'nonveg') {
+        return item.category.toLowerCase() === 'nonveg';
+      } else if (filter === 'vegan') {
+        return item.category.toLowerCase() === 'vegan';
+      }
+      // Handle other filters if needed
     });
-  
-    console.log("Filtered Data:", filtered);
     setFilteredData(filtered);
     navigation.navigate('ScreenA', { filteredData: filtered });
   };
@@ -46,26 +52,21 @@ const ScreenA = ({navigation}) => {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarLabelStyle: styles.tabLabel,
-          tabBarActiveTintColor: 'blue', // Change the text color of the active tab
-          tabBarInactiveTintColor: 'gray', // Change the text color of inactive tabs
-          tabBarStyle: styles.tabBar // Remove the background color of the tab bar
+          tabBarActiveTintColor: 'blue',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: styles.tabBar
         })}
       >
-        {/* Pass restaurantData as prop to RestaurantScreen */}
         <Tab.Screen name="Restaurants">
-        {() => <RestaurantScreen filter={selectedFilter}  />}
+          {() => <RestaurantScreen filter={selectedFilter} restaurantData={filteredData} />}
         </Tab.Screen>
         <Tab.Screen name="Cooking" component={CookingScreen} />
       </Tab.Navigator>
-      <BottomSheetModal isVisible={isModalVisible} onClose={handleCloseModal} 
-      onApplyFilter={handleApplyFilter} />
-        {/* Add your filter options or content here */}
-       
+      <BottomSheetModal isVisible={isModalVisible} onClose={handleCloseModal} onApplyFilter={handleApplyFilter} />
     </View>
   );
 };
 
-// Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
