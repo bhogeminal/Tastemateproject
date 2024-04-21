@@ -4,7 +4,7 @@ import colors from '../Styles/colors';
 
 const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
   if (!isVisible) return null;
-  
+
   const [selectedFilter, setSelectedFilter] = useState(null);
 
   const handleApplyFilter = (filter) => {
@@ -30,14 +30,23 @@ const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
           <View style={styles.category}>
             <Text style={[styles.categoryTitle, styles.Dietcategory]}>Diet</Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
-              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('veg')}>
-                <Text style={{ color: colors.textcolor }}>Vegetarian</Text>
+              <TouchableOpacity
+                style={[styles.option, selectedFilter === 'veg' && styles.selectedOption]}
+                onPress={() => handleApplyFilter('veg')}
+              >
+                <Text style={{ color: selectedFilter === 'veg' ? '#FFFFFF' : colors.textcolor }}>Vegetarian</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('Nonveg')}>
-                <Text>Non-Vegetarian</Text>
+              <TouchableOpacity
+                style={[styles.option, selectedFilter === 'Nonveg' && styles.selectedOption]}
+                onPress={() => handleApplyFilter('Nonveg')}
+              >
+                <Text style={{ color: selectedFilter === 'Nonveg' ? '#FFFFFF' : colors.textcolor }}>Non-Vegetarian</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.option} onPress={() => handleApplyFilter('vegan')}>
-                <Text>Vegan</Text>
+              <TouchableOpacity
+                style={[styles.option, selectedFilter === 'vegan' && styles.selectedOption]}
+                onPress={() => handleApplyFilter('vegan')}
+              >
+                <Text style={{ color: selectedFilter === 'vegan' ? '#FFFFFF' : colors.textcolor }}>Vegan</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -125,6 +134,10 @@ const styles = StyleSheet.create({
     borderRadius: 22,
     paddingHorizontal: 10,
     marginHorizontal: 2,
+  },
+  selectedOption: {
+    backgroundColor: '#122C3E',
+    borderColor: '#122C3E',
   },
   line: {
     height: 1,
