@@ -34,6 +34,9 @@ const ScreenA = ({ navigation }) => {
       } else if (filter === 'vegan') {
         return item.category.toLowerCase() === 'vegan';
       }
+      else if (filter === 'Indian') {
+        return item.category.toLowerCase() === 'Indian';
+      }
       // Handle other filters if needed
     });
     setFilteredData(filtered);
