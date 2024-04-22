@@ -55,10 +55,10 @@ const BottomSheetModal = ({ isVisible, onClose, onApplyFilter }) => {
             <Text style={styles.categoryTitle}>Cuisines</Text>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
               <TouchableOpacity
-                style={[styles.option, selectedFilter === 'indian' && styles.selectedOption]}
-                onPress={() => handleApplyFilter('indian')}
+                style={[styles.option, selectedFilter === 'Indian' && styles.selectedOption]}
+                onPress={() => handleApplyFilter('Indian')}
               >
-                <Text style={{ color: selectedFilter === 'indian' ? '#FFFFFF' : colors.textcolor }}>Indian</Text>
+                <Text style={{ color: selectedFilter === 'Indian' ? '#FFFFFF' : colors.textcolor }}>Indian</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.option, selectedFilter === 'mediterranean' && styles.selectedOption]}
