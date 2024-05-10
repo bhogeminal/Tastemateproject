@@ -42,7 +42,7 @@ export const restaurantData = [
       "content": "Taste the Neighborhood",
       "custominfo":"dishes we think you should try",
       "revenu": 49.9,
-      "cuisins":"Indian",
+      "cuisins":"mediterranean",
       "noOfStores": 40,
       "category":"veg",
       "imageUrl": "https://b.zmtcdn.com/data/pictures/4/900844/38f49e4218803f0d328a22d0f3bf3452.jpg"
@@ -66,7 +66,7 @@ export const restaurantData = [
       "content": "satisfy your cravings",
       "custominfo":"Restaurants that uits your plate",      
       "revenu": 15,
-      "cuisins":"Indian",
+      "cuisins":"mediterranean",
       "noOfStores": 10,
       "category":"vegan",
       "imageUrl": "https://www.ahstatic.com/photos/c096_ho_00_p_1024x768.jpg"

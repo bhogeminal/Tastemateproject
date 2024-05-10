@@ -27,6 +27,7 @@ const ScreenA = ({ navigation }) => {
   const handleApplyFilter = (filter) => {
     setSelectedFilter(filter);
     const filtered = restaurantData.filter(item => {
+      console.log("item00",item)
       if (filter === 'veg') {
         return item.category.toLowerCase() === 'veg';
       } else if (filter === 'nonveg') {
@@ -35,7 +36,9 @@ const ScreenA = ({ navigation }) => {
         return item.category.toLowerCase() === 'vegan';
       }
       else if (filter === 'Indian') {
-        return item.category.toLowerCase() === 'Indian';
+        return item.cuisins === 'Indian'; // Adjust the comparison with lowercase
+      } else if (filter === 'mediterranean') {
+        return item.cuisins.toLowerCase() === 'mediterranean';
       }
       // Handle other filters if needed
     });

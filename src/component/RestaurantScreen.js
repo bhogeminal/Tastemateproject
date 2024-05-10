@@ -7,8 +7,10 @@ import colors from '../Styles/colors';
 
 const RestaurantScreen = ({ filter }) => {
   // Filter the data based on the selected filter
-  const filteredData = filter ? restaurantData.filter(item => item.category.toLowerCase() === filter.toLowerCase()) : restaurantData;
-
+const filteredData = filter ? restaurantData.filter(item => 
+    item.category.toLowerCase() === filter.toLowerCase() || 
+    item.cuisins.toLowerCase() === filter.toLowerCase()
+) : restaurantData;
   const handleViewAll = () => {
     // Navigate to Screen B or handle the action accordingly
   };
@@ -29,6 +31,7 @@ const RestaurantScreen = ({ filter }) => {
 
           {/* Pass the array of items to HorizontalScrollView */}
           <HorizontalScrollView data={filteredData} />
+          
         </View>
       ))}
     </ScrollView>
