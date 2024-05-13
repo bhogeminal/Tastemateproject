@@ -4,16 +4,19 @@ import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { restaurantData } from '../Data/data';
 import HorizontalScrollView from './HorizontalScrollView';
 import colors from '../Styles/colors';
-
+import { useNavigation } from '@react-navigation/native'
 const RestaurantScreen = ({ filter }) => {
+  const navigation = useNavigation(); // Get navigation object
+
   // Filter the data based on the selected filter
 const filteredData = filter ? restaurantData.filter(item => 
     item.category.toLowerCase() === filter.toLowerCase() || 
     item.cuisins.toLowerCase() === filter.toLowerCase()
 ) : restaurantData;
-  const handleViewAll = () => {
-    // Navigate to Screen B or handle the action accordingly
-  };
+const handleViewAll = () => {
+  // Navigate to Screen B or handle the action accordingly
+  navigation.navigate('Completelistscreen', { data: filteredData });
+};
 
   return (
     <ScrollView style={{ flex: 1 }}>
