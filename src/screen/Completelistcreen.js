@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import colors from '../Styles/colors';
 import Imagepath from '../constant/Imagepath';
@@ -6,14 +6,23 @@ import Imagepath from '../constant/Imagepath';
 const Completelistscreen = ({ route }) => {
   const { data } = route.params; // Get the filtered data passed from the previous screen
 
-  // Dummy function for handling press on "Save" button
-  const handleSave = () => {
-    // Save the restaurant or handle the action accordingly
+  // State to manage saved items
+  const [savedItems, setSavedItems] = useState([]);
+
+  // Function to handle saving an item
+  const handleSave = (id) => {
+    // Check if the item is already saved
+    if (!savedItems.includes(id)) {
+      // Add the item to the saved items list
+      setSavedItems([...savedItems, id]);
+      // Perform any other action (e.g., save to database)
+    }
   };
 
-  // Dummy function for handling press on "Favorite" button
-  const handleFavorite = () => {
-    // Mark the restaurant as favorite or handle the action accordingly
+  // Function to handle marking an item as favorite
+  const handleFavorite = (id) => {
+    // Perform action to mark the item as favorite
+    // This can include updating the item's data in the database
   };
 
   // Render item function for FlatList
@@ -23,12 +32,12 @@ const Completelistscreen = ({ route }) => {
       <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 200, borderRadius: 10 }} />
 
       {/* Save button */}
-      <TouchableOpacity onPress={handleSave} style={{ position: 'absolute', top: 10, left: 10 }}>
-        <Image source={Imagepath.save} style={{ width: 25, height: 25 }} />
+      <TouchableOpacity onPress={() => handleSave(item.id)} style={{ position: 'absolute', top: 10, left: 10 }}>
+        <Image source={savedItems.includes(item.id) ? Imagepath.bookmark  :Imagepath.save} style={{ width: 25, height: 25 }} />
       </TouchableOpacity>
 
       {/* Heart (Favorite) button */}
-      <TouchableOpacity onPress={handleFavorite} style={{ position: 'absolute', top: 10, right: 10 }}>
+      <TouchableOpacity onPress={() => handleFavorite(item.id)} style={{ position: 'absolute', top: 10, right: 10 }}>
         <Image source={Imagepath.like} style={{ width: 25, height: 25 }} />
       </TouchableOpacity>
 

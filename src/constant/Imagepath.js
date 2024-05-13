@@ -1,5 +1,6 @@
 export default {
     save:require('../assets/save.png'),
+    bookmark:require('../assets/bookmark.png'),
     like:require('../assets/like.png'),
    search:require("../assets/search.png"),
 //    filter:require("../assets/setting.png"),
