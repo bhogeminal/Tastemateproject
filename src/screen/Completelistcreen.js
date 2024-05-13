@@ -12,8 +12,12 @@ const Completelistscreen = ({ route }) => {
   // Function to handle saving an item
   const handleSave = (id) => {
     // Check if the item is already saved
-    if (!savedItems.includes(id)) {
-      // Add the item to the saved items list
+    if (savedItems.includes(id)) {
+      // If the item is already saved, remove it from the saved items list
+      setSavedItems(savedItems.filter(itemId => itemId !== id));
+      // Perform any other action (e.g., remove from database)
+    } else {
+      // If the item is not saved, add it to the saved items list
       setSavedItems([...savedItems, id]);
       // Perform any other action (e.g., save to database)
     }
