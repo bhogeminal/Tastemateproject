@@ -19,8 +19,14 @@ const handleSave = (id) => {
 };
 
   // Dummy function for handling press on "Favorite" button
-  const handleFavorite = () => {
-    // Mark the restaurant as favorite or handle the action accordingly
+  const handleFavorite = (id) => {
+if(fav.includes(id)){
+  setfav(prefav => prefav.filter(itemId => itemId !== id))
+}
+else{
+  setfav(prefav => [...prefav,id]);
+}
+
   };
 
   return (
@@ -39,8 +45,8 @@ const handleSave = (id) => {
             </TouchableOpacity>
 
             {/* Heart (Favorite) button */}
-            <TouchableOpacity onPress={handleFavorite} style={{ position: 'absolute', top: 10, right: 10 }}>
-              <Image source={Imagepath.like} style={{ width: 25, height: 25 }} />
+            <TouchableOpacity onPress={()=>handleFavorite(item.id)} style={{ position: 'absolute', top: 10, right: 10 }}>
+              <Image source={fav.includes(item.id)? Imagepath.love :Imagepath.like} style={{ width: 25, height: 25 }} />
             </TouchableOpacity>
 
             {/* Restaurant name */}

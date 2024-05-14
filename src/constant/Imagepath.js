@@ -6,5 +6,8 @@ export default {
 //    filter:require("../assets/setting.png"),
    searchnormal:require("../assets/search-normal.png"),
    Vector:require("../assets/Vector.png"),
-love:require('../assets/love.png')
+love:require('../assets/love.png'),
+setting:require('../assets/setting.png'),
+settingslider:require('../assets/settings-sliders.png')
+
 }

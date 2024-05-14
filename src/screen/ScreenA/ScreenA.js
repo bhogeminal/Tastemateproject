@@ -52,7 +52,7 @@ const ScreenA = ({ navigation }) => {
         <Image source={Imagepath.searchnormal} />
         <TextInput style={styles.searchInput} placeholder="Search" />
         <TouchableOpacity style={styles.filterIconContainer} onPress={() => handleFilter('veg')}>
-          <Image source={Imagepath.Vector} style={{ height: 20, width: 20 }} />
+          <Image source={Imagepath.settingslider} style={{ height: 20, width: 20 }} />
         </TouchableOpacity>
       </View>
       <Tab.Navigator
