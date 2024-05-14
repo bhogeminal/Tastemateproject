@@ -1,14 +1,22 @@
 // HorizontalScrollView.js
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView, FlatList, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Imagepath from '../constant/Imagepath';
 
 
 const HorizontalScrollView = ({ data }) => {
-  // Dummy function for handling press on "Save" button
-  const handleSave = () => {
-    // Save the restaurant or handle the action accordingly
-  };
+const[save, setSave] =useState([])  
+const[fav,setfav] =useState([])
+const handleSave = (id) => {
+  // Save the restaurant or handle the action accordingly
+  if (save.includes(id)) {
+    // If the item is already saved, remove it from the saved items list
+    setSave(prevSave => prevSave.filter(itemId => itemId !== id));
+  } else {
+    // If the item is not saved, add it to the saved items list
+    setSave(prevSave => [...prevSave, id]);
+  }
+};
 
   // Dummy function for handling press on "Favorite" button
   const handleFavorite = () => {
@@ -26,8 +34,8 @@ const HorizontalScrollView = ({ data }) => {
             <Image source={{ uri: item.imageUrl }} style={{ width: '100%', height: 200, borderRadius: 10 }} />
 
             {/* Save button */}
-            <TouchableOpacity onPress={handleSave} style={{ position: 'absolute', top: 10, left: 10 }}>
-              <Image source={Imagepath.save} style={{ width: 25, height: 25 }} />
+            <TouchableOpacity onPress={()=>handleSave(item.id)} style={{ position: 'absolute', top: 10, left: 10 }}>
+              <Image source={save.includes(item.id)?Imagepath.bookmark : Imagepath.save} style={{ width: 25, height: 25 }} />
             </TouchableOpacity>
 
             {/* Heart (Favorite) button */}
