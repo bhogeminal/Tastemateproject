@@ -8,7 +8,7 @@ const Completelistscreen = ({ route }) => {
 
   // State to manage saved items
   const [savedItems, setSavedItems] = useState([]);
-
+const[fav,setfav]=useState([])
   // Function to handle saving an item
   const handleSave = (id) => {
     // Check if the item is already saved
@@ -24,9 +24,16 @@ const Completelistscreen = ({ route }) => {
   };
 
   // Function to handle marking an item as favorite
-  const handleFavorite = (id) => {
+  const togglefav = (id) => {
     // Perform action to mark the item as favorite
     // This can include updating the item's data in the database
+   if(fav.includes(id)){
+    setfav(prefav=> prefav.filter(itemId=> itemId !== id))
+
+    }else{
+      setfav(prefav => [...prefav,id])
+    
+   }
   };
 
   // Render item function for FlatList
@@ -41,8 +48,8 @@ const Completelistscreen = ({ route }) => {
       </TouchableOpacity>
 
       {/* Heart (Favorite) button */}
-      <TouchableOpacity onPress={() => handleFavorite(item.id)} style={{ position: 'absolute', top: 10, right: 10 }}>
-        <Image source={Imagepath.like} style={{ width: 25, height: 25 }} />
+      <TouchableOpacity onPress={() => togglefav(item.id)} style={{ position: 'absolute', top: 10, right: 10 }}>
+        <Image source={fav.includes(item.id) ? Imagepath.love:Imagepath.like } style={{ width: 25, height: 25 }} />
       </TouchableOpacity>
 
       {/* Restaurant name */}
